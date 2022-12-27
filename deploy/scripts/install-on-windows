@@ -66,11 +66,11 @@ echo "Waiting for vm to be ready..."
 while ! multipass list | grep -e "^$NAME " | grep -e "Running"; do
     sleep 1
 done
-exit 1
+
 # mount laf project root to vm
 echo "Mounting project to vm: $PROJECT_ROOT -> $NAME:/laf/"
 multipass mount $PROJECT_ROOT $NAME:/laf/
-
+exit 1
 # shellcheck disable=SC2139
 alias vm_root_exec="multipass exec $NAME -- sudo -i"
 vm_ip=$(multipass info "$NAME" | grep IPv4: | awk '{print $2}')
